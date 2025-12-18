@@ -28,37 +28,48 @@ export const ProfileScreen = ({ navigation }) => {
             colors={[theme.colors.background, theme.colors.surface]}
             style={styles.container}
         >
-
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Borrowed Books</Text>
-                {borrowedBooks.map((book) => (
-                    <View key={book.id} style={styles.borrowedBook}>
-                        <View style={styles.bookInfo}>
-                            <Text style={styles.bookTitle}>{book.title}</Text>
-                            <Text style={styles.bookAuthor}>{book.author}</Text>
-                            <Text style={styles.dueDate}>Due: {book.dueDate}</Text>
-                        </View>
+            <SafeAreaView style={styles.safeArea}>
+                <ScrollView>
+                    <View style={styles.header}>
+                        <Image
+                            source={{ uri: mockUser.avatar }}
+                            style={styles.avatar}
+                        />
+                        <Text style={styles.name}>{mockUser.name}</Text>
+                        <Text style={styles.email}>{mockUser.email}</Text>
+                        <Text style={styles.studentId}>ID: {mockUser.studentId}</Text>
                     </View>
-                ))}
-            </View>
 
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Settings</Text>
-                {renderSettingItem({
-                    icon: Settings,
-                    title: 'Account Settings',
-                    onPress: () => { },
-                })}
-                {renderSettingItem({
-                    icon: LogOut,
-                    title: 'Logout',
-                    onPress: handleLogout,
-                })}
-            </View>
-        </ScrollView>
-      </SafeAreaView >
-    </LinearGradient >
-  );
+                    <View style={styles.section}>
+                        <Text style={styles.sectionTitle}>Borrowed Books</Text>
+                        {borrowedBooks.map((book) => (
+                            <View key={book.id} style={styles.borrowedBook}>
+                                <View style={styles.bookInfo}>
+                                    <Text style={styles.bookTitle}>{book.title}</Text>
+                                    <Text style={styles.bookAuthor}>{book.author}</Text>
+                                    <Text style={styles.dueDate}>Due: {book.dueDate}</Text>
+                                </View>
+                            </View>
+                        ))}
+                    </View>
+
+                    <View style={styles.section}>
+                        <Text style={styles.sectionTitle}>Settings</Text>
+                        {renderSettingItem({
+                            icon: Settings,
+                            title: 'Account Settings',
+                            onPress: () => { },
+                        })}
+                        {renderSettingItem({
+                            icon: LogOut,
+                            title: 'Logout',
+                            onPress: handleLogout,
+                        })}
+                    </View>
+                </ScrollView>
+            </SafeAreaView >
+        </LinearGradient >
+    );
 };
 
 const styles = StyleSheet.create({
